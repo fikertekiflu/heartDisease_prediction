@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import gzip
 import pickle
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -31,9 +30,9 @@ class HeartDiseaseInput(BaseModel):
     Oldpeak: float
     ST_Slope: int
 
-# Load the saved heart disease prediction model
+# Load the saved heart disease prediction model (no gzip, just pickle)
 try:
-    with gzip.open('heart_disease_model.sav.gz', 'rb') as f:
+    with open('heart_disease_model.sav', 'rb') as f:
         heart_disease_model = pickle.load(f)
 except Exception as e:
     print(f"Error loading the heart disease model: {e}")
