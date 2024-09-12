@@ -20,15 +20,17 @@ app.add_middleware(
 class HeartDiseaseInput(BaseModel):
     Age: int
     Sex: int
-    ChestPainType: int
+    ChestPain: int
     RestingBP: int
     Cholesterol: int
     FastingBS: int
-    RestingECG: int
-    MaxHR: int
+    RestECG: int
+    MaxHeartRate: int
     ExerciseAngina: int
-    Oldpeak: float
-    ST_Slope: int
+    OldPeak: float
+    Slope: int
+    MajorVessels: int
+    Thalassemia: int
 
 # Load the saved heart disease prediction model (no gzip, just pickle)
 try:
@@ -46,15 +48,17 @@ async def heart_disease_predict(input_parameters: HeartDiseaseInput):
         input_list = [
             input_data['Age'],
             input_data['Sex'],
-            input_data['ChestPainType'],
+            input_data['ChestPain'],
             input_data['RestingBP'],
             input_data['Cholesterol'],
             input_data['FastingBS'],
-            input_data['RestingECG'],
-            input_data['MaxHR'],
+            input_data['RestECG'],
+            input_data['MaxHeartRate'],
             input_data['ExerciseAngina'],
-            input_data['Oldpeak'],
-            input_data['ST_Slope']
+            input_data['OldPeak'],
+            input_data['Slope'],
+            input_data['MajorVessels'],
+            input_data['Thalassemia']
         ]
 
         # Perform prediction
